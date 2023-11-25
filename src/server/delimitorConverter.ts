@@ -1,3 +1,4 @@
+"use server"
 import * as XLSX from 'xlsx/xlsx.mjs';
 
 import * as fs from 'fs';
@@ -10,7 +11,7 @@ import * as cpexcel from 'xlsx/dist/cpexcel.full.mjs';
 XLSX.set_cptable(cpexcel);
 
 export async function delimitorConverter(buffer) {
-  console.log('buffer', buffer);
+  //console.log('buffer', buffer);
   const workbook = XLSX.read(buffer, { type: 'buffer' });
 
   const firstSheetName = workbook.SheetNames[0];
@@ -18,6 +19,6 @@ export async function delimitorConverter(buffer) {
 
   const csvContent: string = XLSX.utils.sheet_to_csv(worksheet, { FS: ';' });
 
-  console.log('csv content', csvContent.replace(/,/g, ';'));
+  //console.log('csv content', csvContent.replace(/,/g, ';'));
   return csvContent.replace(/,/g, ';');
 }
